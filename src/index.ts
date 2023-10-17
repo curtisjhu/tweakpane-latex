@@ -1,4 +1,4 @@
-import {TweakpaneInfodumpPlugin} from './plugin';
+import {TweakpaneLatexPlugin} from './plugin';
 
 // Export your plugin(s) as constant `plugins`
-export const plugins = [TweakpaneInfodumpPlugin];
+export const plugins = [TweakpaneLatexPlugin];

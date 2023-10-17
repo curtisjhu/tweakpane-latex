@@ -1,19 +1,23 @@
-import {ClassName, View, ViewProps} from '@tweakpane/core';
-import {render} from 'slimdown-js';
+import {ClassName, View} from '@tweakpane/core';
 
-interface Config {
-	border: boolean;
-	content: string;
-	markdown: boolean;
-	viewProps: ViewProps;
-}
+import katex from 'katex';
+
+import { Marked, marked } from "marked";
+import markedCodeFormat from 'marked-code-format';
+import markedKatex from "marked-katex-extension";
+// import markedFootnote from 'marked-footnote';
+// import {markedEmoji} from "marked-emoji";
+// import {Octokit} from "@octokit/rest";
+// const octokit = new Octokit();
+
+import { Config } from './common';
 
 // Create a class name generator from the view name
 // ClassName('tmp') will generate a CSS class name like `tp-tmpv`
 const className = ClassName('indu');
 const classNameBorder = ClassName('indub');
 
-export class InfodumpView implements View {
+export class LatexView implements View {
 	public readonly element: HTMLElement;
 
 	constructor(doc: Document, config: Config) {
@@ -26,8 +30,29 @@ export class InfodumpView implements View {
 
 		const contentElem = doc.createElement('div');
 		contentElem.classList.add(className('t'));
+
+		// markdown is latex + markdown
 		if (config.markdown) {
-			contentElem.innerHTML = render(config.content);
+			const html = new Marked()
+				// add extensions here if you want in the future
+				.use(markedKatex({ output: "mathml", ...config.latexSettings }))
+				.parse(config.content, {
+					gfm: true,
+					breaks: true,
+					...config.markdownSettings
+				})
+
+			if (typeof html === "string") {
+				contentElem.innerHTML = html;
+			} else {
+				html.then(str => contentElem.innerHTML = str);
+			}
+		} else if (config.latex) {
+			contentElem.innerHTML = katex.renderToString(config.content, {
+				displayMode: true,
+				output: "mathml",
+				...config.latexSettings
+			})
 		} else {
 			contentElem.textContent = config.content;
 		}

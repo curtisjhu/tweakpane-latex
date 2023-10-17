@@ -1,20 +1,14 @@
-import {BladeController, createBlade, ViewProps} from '@tweakpane/core';
+import {BladeController, createBlade } from '@tweakpane/core';
+import { Config } from "./common"
 
-import {InfodumpView} from './view';
-
-interface Config {
-	border: boolean;
-	content: string;
-	markdown: boolean;
-	viewProps: ViewProps;
-}
+import {LatexView} from './view';
 
 // Custom controller class should implement `Controller` interface
-export class InfodumpController extends BladeController<InfodumpView> {
+export class LatexController extends BladeController<LatexView> {
 	constructor(doc: Document, config: Config) {
 		super({
 			blade: createBlade(),
-			view: new InfodumpView(doc, config),
+			view: new LatexView(doc, config),
 			viewProps: config.viewProps,
 		});
 	}

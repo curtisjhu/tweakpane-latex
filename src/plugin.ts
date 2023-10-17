@@ -6,13 +6,14 @@ import {
 	parseParams,
 } from '@tweakpane/core';
 
-import {InfodumpController} from './controller';
+import {LatexController} from './controller';
+import { Config } from "./common";
 
-export interface InfodumpBladeParams extends BaseBladeParams {
-	border?: boolean;
-	content: string;
-	markdown?: boolean;
-	view: 'infodump';
+import { MarkedOptions } from "marked";
+import katex from 'katex';
+
+export interface LatexBladeParams extends BaseBladeParams, Config {
+	view: 'latex';
 }
 
 // NOTE: You can see JSDoc comments of `InputBindingPlugin` for details about each property
@@ -22,8 +23,8 @@ export interface InfodumpBladeParams extends BaseBladeParams {
 // - converts `Ex` into `In` and holds it
 // - P is the type of the parsed parameters
 //
-export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = {
-	id: 'infodump',
+export const TweakpaneLatexPlugin: BladePlugin<LatexBladeParams> = {
+	id: 'latex',
 
 	// type: The plugin type.
 	// - 'input': Input binding
@@ -34,30 +35,36 @@ export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = {
 	// See rollup.config.js for details
 	css: '__css__',
 
-	accept(params) {
+	accept(params: any) {
 		// Parse parameters object
 		const p = ParamsParsers;
 		const r = parseParams(params, {
 			border: p.optional.boolean,
 			content: p.required.string,
 			markdown: p.optional.boolean,
-			view: p.required.constant('infodump'),
+			latex: p.optional.boolean,
+			latexSettings: p.optional.object(katex.SETTINGS_SCHEMA), // little sketchy
+			markdownSettings: p.optional.object({}), // little sketchy
+			view: p.required.constant('latex'),
 		});
 		return r ? {params: r} : null;
 	},
 
-	controller(args) {
+	controller(args: any) {
 		// Create a controller for the plugin
-		return new InfodumpController(args.document, {
+		return new LatexController(args.document, {
 			border: args.params.border ?? false,
 			content: args.params.content,
+			latex: args.params.latex ?? false,
 			markdown: args.params.markdown ?? false,
+			latexSettings: args.params.latexSettings ?? {},
+			markdownSettings: args.params.markdownSettings ?? {},
 			viewProps: args.viewProps,
 		});
 	},
 
-	api(args) {
-		if (!(args.controller instanceof InfodumpController)) {
+	api(args: any) {
+		if (!(args.controller instanceof LatexController)) {
 			return null;
 		}
 		return new BladeApi(args.controller);

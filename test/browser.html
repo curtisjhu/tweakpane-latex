@@ -17,76 +17,70 @@
 </head>
 <body>
 	<script src="../node_modules/tweakpane/dist/tweakpane.js"></script>
-	<script src="../dist/tweakpane-plugin-infodump.js"></script>
+	<script src="../dist/tweakpane-latex.js"></script>
 	<script>
-		const PARAMS = {
-			Warp: 9.2,
-			Distance: 80,
-		};
 
-		const pane = new Tweakpane.Pane({title: "A bunch of infodumps"});
+		const pane = new Tweakpane.Pane({title: "A bunch of Latex"});
 
 		// Register plugin
-		pane.registerPlugin(TweakpaneInfodumpPlugin);
+		pane.registerPlugin(TweakpaneLatexPlugin);
 
 		// TODO: Update parameters for your plugin
 		pane.addBlade({
-			view: "infodump",
-			content: "Lorem ipsum is tired, hence...\n\nShe's flower units about the lad herself. Major, lark's true pepper. Let birds go further loose maybe. Shout easy play. *Round the turbulent quick.* Well, close the reverse harbor. **Ankle try sound.** Reset gleaming. ~~Dinner to bug.~~ When? Strike limits flame the dark true salt. Way link complete. [Way link!](https://noahdoersing.com) Victory strike limits frosted wake. Simple hesitation!",
-			markdown: true,
+			view: "latex",
+			content: "No parsing",
 		});
-		pane.addInput(PARAMS, 'Warp', {
-			step: 0.1,
-		});
-		pane.addInput(PARAMS, 'Distance', {
-			step: 10,
-			min: 0,
-			max: 100,
-		});
-		pane.addButton({label: "Engage?", title: "Make it so!"});
 		pane.addBlade({
-			view: "infodump",
-			content: "Here's an infodump with a border and *no Markdown* parsing.",
+			view: "latex",
+			content: "No parsing + border",
 			border: true,
-			markdown: false,
 		});
-		/*pane.addBlade({
-			view: "infodump",
-			content: `# A longer example
 
-And *now* [a link](http://www.google.com) to **follow** and [another](http://yahoo.com/).
+		const mathFolder = pane.addFolder({
+			title: "Latex",
+		})
+		mathFolder.addBlade({
+			view: "latex",
+			content: "\\begin{equation} \\int e^{-x^2} dx \\end{equation}",
+			latex: true
+		});
+		mathFolder.addBlade({
+			view: "latex",
+			content: "\\int 2x e^{x^2} dx",
+			latex: true
+		});
+
+
+		const markedExample = pane.addFolder({
+			title: "Markdown (includes some latex)",
+		})
+		markedExample.addBlade({
+			view: "latex",
+			content: `
+# Header
+
+$$\\int x^2 dx$$
+
+[a link](http://www.google.com).
 
 * One
 * Two
-* Three
 
-## Subhea
+## Subhead
 
-One **two** three **four** five.<b>d</b>
+**bold**, *italics*
 
-One __two__ three _four_ five __six__ seven _eight_.
+More text with \` print('hello') \` inline code.
 
-1. One
-2. Two
-3. Three
-
-More text with \`inline($code)\` sample.
-
-> A block quote
-> across two lines.
-
-More text...
-
+---
 \`\`\`
-const pane = new Tweakpane.Pane();
-pane.addButton({title: "test", label: "Button!"});
+npm run start
 \`\`\`
-
-Testing`,
-			border: false,
+---
+> References: [katex](https://katex.org/docs/node)
+`,
 			markdown: true,
 		});
-		*/
 
 		window.pane = pane;
 	</script>

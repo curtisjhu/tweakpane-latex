@@ -1,27 +1,30 @@
 {
-  "name": "tweakpane-plugin-infodump",
-  "version": "0.3.0",
-  "description": "Infodump plugin for Tweakpane, provides a text-displaying blade with basic Markdown support intended for long descriptions (i.e., infodumps)",
-  "main": "dist/tweakpane-plugin-infodump.js",
+  "name": "tweakpane-latex",
+  "version": "0.1.0",
+  "description": "Tweakpane plugin for displaying Latex (MathJax or Katex) in panels",
+  "main": "dist/tweakpane-latex.js",
   "types": "dist/types/index.d.ts",
-  "author": "Noah Doersing",
+  "author": "Curtis Hu",
   "license": "MIT",
   "keywords": [
     "tweakpane",
     "tweakpane-plugin",
     "plugin",
-    "infodump",
+    "latex",
+    "mathjax",
+    "katex",
     "description",
     "text",
     "markdown"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/doersino/tweakpane-plugin-infodump.git"
+    "url": "git+https://github.com/curtisjhu/tweakpane-latex.git"
   },
   "files": [
     "dist"
   ],
+  "type": "module",
   "scripts": {
     "prepare": "run-s clean build",
     "prepublishOnly": "npm test",
@@ -43,14 +46,19 @@
     "watch:ts": "onchange --initial --kill \"src/**/*.ts\" -- rollup --config rollup.config.js"
   },
   "dependencies": {
-    "slimdown-js": "0.6.1"
+    "katex": "^0.16.9",
+    "marked": "^9.1.2",
+    "marked-code-format": "^1.0.1",
+    "marked-katex-extension": "^4.0.2"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.2",
+    "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-replace": "^2.4.1",
     "@rollup/plugin-typescript": "^8.2.0",
     "@tweakpane/core": "^1.0.6",
+    "@types/prettier": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
     "autoprefixer": "^10.2.4",
@@ -61,10 +69,10 @@
     "npm-run-all": "^4.1.5",
     "onchange": "^7.1.0",
     "postcss": "^8.2.6",
-    "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.39.1",
     "rollup-plugin-cleanup": "^3.2.1",
+    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.49.9",
     "typescript": "^4.1.5"

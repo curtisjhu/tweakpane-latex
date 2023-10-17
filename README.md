@@ -1,24 +1,23 @@
-# tweakpane-plugin-infodump
+# tweakpane-latex
 
-This is an *infodump* plugin for [Tweakpane](https://cocopon.github.io/tweakpane/). Provides a *blade* that displays text, optionally with a border and/or basic Markdown support. Intended for long descriptions (*i.e.*, infodumps!) that wouldn't neatly fit into labels.
+This is an *latex* plugin for [Tweakpane](https://cocopon.github.io/tweakpane/). Basically allows you to write natural text, markdown, and latex for descriptions etc. 
 
 ![](screenshot.png)
-<sup>That text is, as you might have guessed based on the controls below, a [Star Trek reference](https://www.youtube.com/watch?v=XU-8Mh2iHEk).</sup>
 
-This implementation is heavily based on the [placeholder blade from the Tweakpane docs](https://github.com/cocopon/tweakpane/blob/a4786be6dae7cad58dbbfe2f047ca097954c4f1f/packages/tweakpane/src/doc/ts/placeholder-plugin.ts) as mentioned in [this issue](https://github.com/cocopon/tweakpane/issues/397).
+This implementation is heavily based on the [doersino's infodump plugin](https://github.com/doersino/tweakpane-plugin-infodump). It's just that his doesn't have latex.
 
 ## Installation
 
 ### Browser
 
-Download the most recent release from [here](https://github.com/doersino/tweakpane-plugin-infodump/releases).
+Download the most recent release from [here](https://github.com/curtisjhu/tweakpane-latex/releases).
 
 ```html
 <script src="tweakpane.min.js"></script>
 <script src="tweakpane-plugin-infodump.min.js"></script>
 <script>
   const pane = new Tweakpane.Pane();
-  pane.registerPlugin(TweakpaneInfodumpPlugin);
+  pane.registerPlugin(TweakpaneLatexPlugin);
 </script>
 ```
 
@@ -27,30 +26,57 @@ Download the most recent release from [here](https://github.com/doersino/tweakpa
 
 ```js
 import {Pane} from 'tweakpane';
-import * as InfodumpPlugin from 'doersino/tweakpane-plugin-infodump';
+import * as LatexPlugin from 'curtisjhu/tweakpane-latex';
 
 const pane = new Pane();
-pane.registerPlugin(InfodumpPlugin);
+pane.registerPlugin(LatexPlugin);
 ```
 
 
 ## Usage
 
+No parsing
 ```js
 pane.addBlade({
-  view: "infodump",
-  content: "Major, lark's true pepper. Let birds go further loose maybe. Shout easy play.",
-  border: false,
-  markdown: false,
+  view: "latex",
+  content: "No parsing",
 });
 ```
 
-Both the `border` and `markdown` switches are `false` by default, so you wouldn't need to specify them in this example.
+No parsing + border
+```js
+pane.addBlade({
+  view: "latex",
+  content: "No parsing + border",
+  border: true,
+});
+```
+Latex only. This uses Katex and the settings from `latexSettings` will be passed into [katex's options](https://katex.org/docs/options.html)
+```js
+pane.addBlade({
+  view: "latex",
+  content: "\\begin{equation} \\int e^{-x^2} dx \\end{equation}",
+  latex: true,
+  latexSettings: {} // optional
+});
+```
 
-Markdown compilation is provided by the [slimdown-js](https://github.com/erikvullings/slimdown-js) package – a very lightweight and hence not entirely-spec-compliant Markdown parser which may or may not lead to issues when going beyond basic text formatting (for this reason, I haven't included CSS rules covering every possible Markdown construct – [file an issue](https://github.com/doersino/tweakpane-plugin-infodump/issues) if you'd like improvements here.)
+Markdown. This uses [markedjs](https://marked.js.org/) and a [katex extension](https://github.com/UziTech/marked-katex-extension) so you have both Markdown + Latex. The settings you pass into `latexSettings` will be passed into [katex's options](https://katex.org/docs/options.html) like above. The settings you pass into `markedSettings` will be passed into [marked.js's options](https://github.com/UziTech/marked-katex-extension)
 
-I recommend using [backtick-delimited strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) (where line breaks are allowed) for multiline Markdown, although you'll need to backslash-escape Markdown's code delimiters if you do so.
+```js
+pane.addBlade({
+      view: "latex",
+      markdown: true,
+      markdownSettings: {} // optional
+      content: `
+        # Header
 
+        $$\\int x^2 dx$$
+
+        [a link](http://www.google.com).
+      `
+})
+```
 
 ## Development
 
@@ -79,7 +105,6 @@ Clone this repository, then:
   ```
 
   Then upload the resulting ZIP file to GitHub.
-
 
 ### File structure
 

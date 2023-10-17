@@ -7,6 +7,7 @@ import Postcss from 'postcss';
 import Cleanup from 'rollup-plugin-cleanup';
 import {terser as Terser} from 'rollup-plugin-terser';
 import Sass from 'sass';
+import commonjs from '@rollup/plugin-commonjs';
 
 import Package from './package.json';
 
@@ -24,6 +25,11 @@ async function compileCss() {
 
 function getPlugins(css, shouldMinify) {
 	const plugins = [
+		// Use CommonJS transpiling
+		commonjs({
+			// these only have commonjs versions
+			include: ["./node_modules/texme/texme.js"]
+		}),
 		// Use ES6 source files to avoid CommonJS transpiling
 		Alias({
 			entries: [
@@ -31,6 +37,10 @@ function getPlugins(css, shouldMinify) {
 					find: '@tweakpane/core',
 					replacement: './node_modules/@tweakpane/core/dist/es6/index.js',
 				},
+				{
+					find: 'katex',
+					replacement: './node_modules/katex/dist/katex.mjs',
+				}
 			],
 		}),
 		Typescript({
