@@ -1,7 +1,7 @@
 
 // These are in typescript which are used for reference, but no the shape we want them.
-import { MarkedOptions } from "marked";
-import { KatexOptions } from 'katex';
+// import { MarkedOptions } from "marked";
+// import { KatexOptions } from 'katex';
 
 import { ParamsParsers } from "@tweakpane/core";
 

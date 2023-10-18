@@ -6,9 +6,8 @@ import {
 	parseParams,
 } from '@tweakpane/core';
 
-import {LatexController} from './controller';
 import { Config } from "./common";
-
+import {LatexController} from './controller';
 import { latexSettingsConfig, markedSettingsConfig } from './settingsTypes';
 
 

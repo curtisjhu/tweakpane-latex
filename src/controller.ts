@@ -1,6 +1,6 @@
 import {BladeController, createBlade } from '@tweakpane/core';
-import { Config } from "./common"
 
+import { Config } from "./common"
 import {LatexView} from './view';
 
 // Custom controller class should implement `Controller` interface
