@@ -14,7 +14,7 @@ Download the most recent release from [here](https://github.com/curtisjhu/tweakp
 
 ```html
 <script src="tweakpane.min.js"></script>
-<script src="tweakpane-plugin-infodump.min.js"></script>
+<script src="tweakpane-latex.min.js"></script>
 <script>
   const pane = new Tweakpane.Pane();
   pane.registerPlugin(TweakpaneLatexPlugin);
@@ -23,7 +23,10 @@ Download the most recent release from [here](https://github.com/curtisjhu/tweakp
 
 
 ### Package
-
+```
+npm i tweakpane-latex
+```
+then
 ```js
 import {Pane} from 'tweakpane';
 import * as LatexPlugin from 'curtisjhu/tweakpane-latex';
