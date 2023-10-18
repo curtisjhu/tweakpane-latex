@@ -1,3 +1,4 @@
+name: deprecated (npm wants OTP)
 on:
   push:
     branches: main
