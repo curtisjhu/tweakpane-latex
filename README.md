@@ -29,7 +29,7 @@ npm i tweakpane-latex
 then
 ```js
 import {Pane} from 'tweakpane';
-import * as LatexPlugin from 'curtisjhu/tweakpane-latex';
+import * as LatexPlugin from 'tweakpane-latex';
 
 const pane = new Pane();
 pane.registerPlugin(LatexPlugin);
