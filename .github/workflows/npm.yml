@@ -1,21 +1,21 @@
 name: deprecated (npm wants OTP)
-on:
-  push:
-    branches: main
-    tags:
-      - 'v*'
+# on:
+#   push:
+#     branches: main
+#     tags:
+#       - 'v*'
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "20"
-      - run: npm install
-      - run: npm run prepare
-      - run: npm test
-      - uses: JS-DevTools/npm-publish@v2.2.2
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
+# jobs:
+#   publish:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: "20"
+#       - run: npm install
+#       - run: npm run prepare
+#       - run: npm test
+#       - uses: JS-DevTools/npm-publish@v2.2.2
+#         with:
+#           token: ${{ secrets.NPM_TOKEN }}
