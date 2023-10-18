@@ -3,6 +3,7 @@
 		"lib": ["DOM", "ES2015"],
 		"moduleResolution": "Node",
 		"strict": true,
+		"importHelpers": false,
 		"target": "ES6"
 	}
 }
