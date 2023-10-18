@@ -9,8 +9,8 @@ import {
 import {LatexController} from './controller';
 import { Config } from "./common";
 
-import { MarkedOptions } from "marked";
-import katex from 'katex';
+import { latexSettingsConfig, markedSettingsConfig } from './settingsTypes';
+
 
 export interface LatexBladeParams extends BaseBladeParams, Config {
 	view: 'latex';
@@ -43,8 +43,8 @@ export const TweakpaneLatexPlugin: BladePlugin<LatexBladeParams> = {
 			content: p.required.string,
 			markdown: p.optional.boolean,
 			latex: p.optional.boolean,
-			latexSettings: p.optional.object(katex.SETTINGS_SCHEMA), // little sketchy
-			markdownSettings: p.optional.object({}), // little sketchy
+			latexSettings: p.optional.object(latexSettingsConfig),
+			markdownSettings: p.optional.object(markedSettingsConfig),
 			view: p.required.constant('latex'),
 		});
 		return r ? {params: r} : null;

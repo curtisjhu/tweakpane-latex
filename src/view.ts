@@ -1,7 +1,6 @@
 import {ClassName, View} from '@tweakpane/core';
 
-import katex from 'katex';
-
+import * as katex from "katex";
 import { Marked, marked } from "marked";
 import markedCodeFormat from 'marked-code-format';
 import markedKatex from "marked-katex-extension";
@@ -48,7 +47,10 @@ export class LatexView implements View {
 				html.then(str => contentElem.innerHTML = str);
 			}
 		} else if (config.latex) {
-			contentElem.innerHTML = katex.renderToString(config.content, {
+			// I think there is a discrepency between the types and the actual module code itself.
+			// Just ignore it for now
+			// @ts-ignore
+			contentElem.innerHTML = katex.default.renderToString(config.content, {
 				displayMode: true,
 				output: "mathml",
 				...config.latexSettings

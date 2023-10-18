@@ -1,6 +1,4 @@
 import { ViewProps } from '@tweakpane/core';
-import { MarkedOptions } from "marked";
-import katex from 'katex';
 
 export interface Config {
 	border: boolean;
@@ -8,6 +6,6 @@ export interface Config {
 	latex: boolean;
 	latexSettings: object;
 	markdown: boolean;
-	markdownSettings: MarkedOptions;
+	markdownSettings: object;
 	viewProps: ViewProps;
 }
