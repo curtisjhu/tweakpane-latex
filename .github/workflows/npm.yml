@@ -1,6 +1,8 @@
 on:
   push:
     branches: main
+    tags:
+      - 'v*
 
 jobs:
   publish:
@@ -12,6 +14,6 @@ jobs:
           node-version: "20"
       - run: npm ci
       - run: npm test
-      - uses: JS-DevTools/npm-publish@v3
+      - uses: JS-DevTools/npm-publish@v2.2.2
         with:
           token: ${{ secrets.NPM_TOKEN }}
