@@ -1,6 +1,6 @@
 {
   "name": "tweakpane-latex",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Tweakpane plugin for displaying Latex and Markdown",
   "main": "dist/tweakpane-latex.js",
   "types": "dist/types/index.d.ts",
@@ -29,6 +29,7 @@
     "prepublishOnly": "npm test",
     "start": "npm run watch",
     "test": "eslint --ext .ts \"src/**/*.ts\"",
+    "budo": "budo ./test/budoscript.js --live -- -t babelify",
     "assets": "run-s clean build assets:version assets:zip",
     "assets:version": "node scripts/assets-append-version.js",
     "assets:zip": "zip -x \"*types* \"-j -r $(cat package.json | npx json name )-$( cat package.json | npx json version ).zip dist",
@@ -51,7 +52,13 @@
     "marked-katex-extension": "^4.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/plugin-transform-private-methods": "^7.22.5",
+    "@babel/plugin-transform-private-property-in-object": "^7.22.11",
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-react": "^7.22.15",
     "@rollup/plugin-alias": "^3.1.2",
+    "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-replace": "^2.4.1",
@@ -62,6 +69,8 @@
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
     "autoprefixer": "^10.2.4",
+    "babelify": "^10.0.0",
+    "budo": "^11.8.4",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",

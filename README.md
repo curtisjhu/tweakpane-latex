@@ -99,7 +99,7 @@ Clone this repository, then:
   $ npm start
   ```
 
-* Open `test/browser.html` to see the result.
+* Open `test/browser.html` to see the result or run `npm run budo` for a commonjs environment version
 
 * Cutting a release:
 

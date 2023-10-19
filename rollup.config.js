@@ -7,6 +7,8 @@ import Postcss from 'postcss';
 import Cleanup from 'rollup-plugin-cleanup';
 import {terser as Terser} from 'rollup-plugin-terser';
 import Sass from 'sass';
+import { babel } from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
 
 import Package from './package.json';
 
@@ -24,7 +26,18 @@ async function compileCss() {
 
 function getPlugins(css, shouldMinify) {
 	const plugins = [
+		commonjs(),
+		// some es2022 stuff in marked.js that we need to change to es6
+		babel({ 
+			babelHelpers: 'bundled',
+			include: "./node_modules/marked/**",
+			plugins: [
+				"@babel/plugin-transform-private-property-in-object",
+				"@babel/plugin-transform-private-methods"
+			]
+		}),
 		// Use ES6 source files to avoid CommonJS transpiling
+		// ES6 is already browser ready. Commonjs -> ES6 is unnecessary and messy
 		Alias({
 			entries: [
 				{
