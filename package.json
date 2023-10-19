@@ -30,6 +30,7 @@
     "start": "npm run watch",
     "test": "eslint --ext .ts \"src/**/*.ts\"",
     "budo": "budo ./test/budoscript.js --live -- -t babelify",
+    "np": "budo ./test/npm.js --live -- -t babelify",
     "assets": "run-s clean build assets:version assets:zip",
     "assets:version": "node scripts/assets-append-version.js",
     "assets:zip": "node scripts/compress.js",
