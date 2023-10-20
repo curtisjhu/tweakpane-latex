@@ -11,7 +11,7 @@ This implementation is heavily based on the [doersino's infodump plugin](https:/
 ### Browser
 
 Download the most recent release from [here](https://github.com/curtisjhu/tweakpane-latex/releases).
-
+Or use the CDN files `https://unpkg.com/tweakpane-latex/dist/tweakpane-latex.js`, or `https://unpkg.com/tweakpane-latex/dist/tweakpane-latex.min.js` for a minified version.
 ```html
 <script src="tweakpane.min.js"></script>
 <script src="tweakpane-latex.min.js"></script>
@@ -71,13 +71,14 @@ pane.addBlade({
       view: "latex",
       markdown: true,
       markdownSettings: {} // optional
-      content: `
-        # Header
+      content:
+`
+# Header
 
-        $$\\int x^2 dx$$
+$$\\int x^2 dx$$
 
-        [a link](http://www.google.com).
-      `
+[a link](http://www.google.com).
+`
 })
 ```
 
