@@ -13,10 +13,20 @@ This implementation is heavily based on the [doersino's infodump plugin](https:/
 Download the most recent release from [here](https://github.com/curtisjhu/tweakpane-latex/releases).
 Or use the CDN files `https://unpkg.com/tweakpane-latex/dist/tweakpane-latex.js`, or `https://unpkg.com/tweakpane-latex/dist/tweakpane-latex.min.js` for a minified version.
 ```html
+<!-- tweakpane 3x use tweakpane-latex@1.2 -->
 <script src="tweakpane.min.js"></script>
 <script src="tweakpane-latex.min.js"></script>
 <script>
   const pane = new Tweakpane.Pane();
+  pane.registerPlugin(TweakpaneLatexPlugin);
+</script>
+
+<!-- tweakpane 4x use tweakpane-latex@1.3 -->
+<script>
+  import { Pane } from "tweakpane.min.js";
+  import * as TweakpaneLatexPlugin from "tweakpane-latex.min.js";
+
+  const pane = new Pane();
   pane.registerPlugin(TweakpaneLatexPlugin);
 </script>
 ```
@@ -26,15 +36,22 @@ Or use the CDN files `https://unpkg.com/tweakpane-latex/dist/tweakpane-latex.js`
 ```
 npm i tweakpane-latex
 ```
-then
+For esm
 ```js
-import {Pane} from 'tweakpane';
-import {TweakpaneLatexPlugin} from 'tweakpane-latex';
+import { Pane } from 'tweakpane';
+import * as TweakpaneLatexPlugin from 'tweakpane-latex';
 
 const pane = new Pane();
 pane.registerPlugin(TweakpaneLatexPlugin);
 ```
+For node
+```js
+const { Pane } = require("tweakpane");
+const TweakpaneLatexPlugin = require('tweakpane-latex');
 
+const pane = new Pane();
+pane.registerPlugin(TweakpaneLatexPlugin);
+```
 
 ## Usage
 
