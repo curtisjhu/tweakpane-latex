@@ -1,11 +1,12 @@
-import { ViewProps } from '@tweakpane/core';
+import { BaseBladeParams, BaseInputParams, InputBindingPlugin, View, ViewProps } from '@tweakpane/core';
 
-export interface Config {
-	border: boolean;
+export interface LatexBladeParams extends BaseBladeParams {
+	view: 'latex';
 	content: string;
-	latex: boolean;
-	latexSettings: object;
-	markdown: boolean;
-	markdownSettings: object;
 	viewProps: ViewProps;
+	border?: boolean;
+	latex?: boolean;
+	latexSettings?: object;
+	markdown?: boolean;
+	markdownSettings?: object;
 }

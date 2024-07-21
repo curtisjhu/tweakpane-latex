@@ -16,11 +16,12 @@
 	</style>
 </head>
 <body>
-	<script src="../node_modules/tweakpane/dist/tweakpane.js"></script>
-	<script src="../dist/tweakpane-latex.js"></script>
-	<script>
+	<script type="module">
+		import { Pane } from "../node_modules/tweakpane/dist/tweakpane.js";
 
-		const pane = new Tweakpane.Pane({title: "A bunch of Latex"});
+		import * as TweakpaneLatexPlugin from "../dist/tweakpane-latex.js";
+
+		const pane = new Pane({title: "A bunch of Latex"});
 
 		// Register plugin
 		pane.registerPlugin(TweakpaneLatexPlugin);

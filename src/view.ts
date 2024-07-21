@@ -7,7 +7,7 @@ import markedKatex from "marked-katex-extension";
 // import {markedEmoji} from "marked-emoji";
 // import {Octokit} from "@octokit/rest";
 // const octokit = new Octokit();
-import { Config } from './common';
+import { LatexBladeParams } from './common';
 
 // Create a class name generator from the view name
 // ClassName('tmp') will generate a CSS class name like `tp-tmpv`
@@ -17,13 +17,13 @@ const classNameBorder = ClassName('indub');
 export class LatexView implements View {
 	public readonly element: HTMLElement;
 
-	constructor(doc: Document, config: Config) {
+	constructor(doc: Document, config: LatexBladeParams) {
 		this.element = doc.createElement('div');
 		this.element.classList.add(className());
 		if (config.border) {
 			this.element.classList.add(classNameBorder());
 		}
-		config.viewProps.bindClassModifiers(this.element);
+		config.viewProps?.bindClassModifiers(this.element);
 
 		const contentElem = doc.createElement('div');
 		contentElem.classList.add(className('t'));

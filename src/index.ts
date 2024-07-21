@@ -1,4 +1,9 @@
+import {TpPlugin} from '@tweakpane/core';
+
 import {TweakpaneLatexPlugin} from './plugin';
 
-// Export your plugin(s) as constant `plugins`
-export const plugins = [TweakpaneLatexPlugin];
+export const id = 'latex';
+export const css = '__css__';
+export const plugins: TpPlugin[] = [
+	TweakpaneLatexPlugin
+];

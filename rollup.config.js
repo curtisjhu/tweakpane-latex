@@ -42,7 +42,7 @@ function getPlugins(css, shouldMinify) {
 			entries: [
 				{
 					find: '@tweakpane/core',
-					replacement: './node_modules/@tweakpane/core/dist/es6/index.js',
+					replacement: './node_modules/@tweakpane/core/dist/index.js',
 				},
 				{
 					find: 'katex',
@@ -104,11 +104,11 @@ export default async () => {
 		external: ['tweakpane'],
 		output: {
 			file: `dist/${distName}${postfix}.js`,
-			format: 'umd',
+			format: 'esm',
 			globals: {
 				tweakpane: 'Tweakpane',
 			},
-			name: getUmdName(Package.name),
+			// name: getUmdName(Package.name),
 		},
 		plugins: getPlugins(css, production),
 

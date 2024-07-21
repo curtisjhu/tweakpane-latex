@@ -1,25 +1,25 @@
 // Import core styles
-@import '../../node_modules/@tweakpane/core/lib/sass/plugin';
+@use '../../node_modules/@tweakpane/core/lib/sass/tp';
 
 // Additional style for the plugin
 // You can use CSS variables for styling. See declarations for details:
 // ../../node_modules/@tweakpane/core/lib/sass/common/_defs.scss
-.#{$prefix}-induv {
+.#{tp.$prefix}-induv {
 	position: relative; // to make border work
 
 	// same as .tp-lblv (= labels for all tweaks)
 	align-items: center;
 	display: flex;
 	line-height: 1.3;
-	padding-left: var(--cnt-h-p);
-	padding-right: var(--cnt-h-p);
+	padding-left: tp.cssVar('container-h-padding');
+	padding-right: tp.cssVar('container-h-padding');
 
-	&.#{$prefix}-v-disabled {
+	&.#{tp.$prefix}-v-disabled {
 		opacity: 0.5;
 	}
 
-	.#{$prefix}-induv_t {
-		color: var(--lbl-fg);
+	.#{tp.$prefix}-induv_t {
+		color: tp.cssVar('label-fg');
 		flex: 1;
 		-webkit-hyphens: auto;
 		-ms-hyphens: auto;
@@ -47,13 +47,13 @@
 		}
 
 		a {
-			color: var(--btn-bg);
+			color: tp.cssVar('button-bg');
 
 			&:active {
-				color: var(--btn-bg-a);
+				color: tp.cssVar('button-bg-active');
 			}
 			&:hover {
-				color: var(--btn-bg-h);
+				color: tp.cssVar('button-bg-hover');
 			}
 		}
 
@@ -78,14 +78,14 @@
 	}
 }
 
-.#{$prefix}-indubv::before {
-	border: var(--mo-fg) dashed 1px;
-	border-radius: var(--elm-br);
+.#{tp.$prefix}-indubv::before {
+	border: tp.cssVar('monitor-fg') dashed 1px;
+	border-radius: tp.cssVar('base-border-radius');
 	bottom: 0;
 	content: '';
-	left: var(--cnt-v-p);
+	left: tp.cssVar('container-v-padding');
 	opacity: 0.3;
 	position: absolute;
-	right: var(--cnt-v-p);
+	right: tp.cssVar('container-v-padding');
 	top: 0;
 }
