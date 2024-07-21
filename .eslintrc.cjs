@@ -6,6 +6,10 @@ module.exports = {
 		// 'plugin:prettier/recommended',
 	],
 	parser: '@typescript-eslint/parser',
+	// parserOptions: {
+	// 	sourceType: 'module',
+	// 	allowImportExportEverywhere: true
+	// },
 	plugins: ['@typescript-eslint', 'simple-import-sort'],
 	root: true,
 	rules: {

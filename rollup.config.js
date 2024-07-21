@@ -102,14 +102,32 @@ export default async () => {
 	return {
 		input: 'src/index.ts',
 		external: ['tweakpane'],
-		output: {
-			file: `dist/${distName}${postfix}.js`,
-			format: 'esm',
-			globals: {
-				tweakpane: 'Tweakpane',
+		output: [
+			{
+				file: `dist/${distName}${postfix}.mjs`,
+				format: 'esm',
+				globals: {
+					tweakpane: 'Tweakpane',
+				},
+				name: getUmdName(Package.name),
 			},
-			// name: getUmdName(Package.name),
-		},
+			{
+				file: `dist/${distName}${postfix}.cjs`,
+				format: 'cjs',
+				globals: {
+					tweakpane: 'Tweakpane',
+				},
+				name: getUmdName(Package.name),
+			},
+			{
+				file: `dist/${distName}${postfix}.js`,
+				format: 'umd',
+				globals: {
+					tweakpane: 'Tweakpane',
+				},
+				name: getUmdName(Package.name),
+			}
+		],
 		plugins: getPlugins(css, production),
 
 		// Suppress `Circular dependency` warning
