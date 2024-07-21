@@ -1,4 +1,4 @@
-import {Blade, BladeController, createBlade, ViewProps} from '@tweakpane/core';
+import { BladeController, createBlade } from '@tweakpane/core';
 
 import { LatexBladeParams } from "./common"
 import {LatexView} from './view';

@@ -1,4 +1,4 @@
-import { BaseBladeParams, BaseInputParams, InputBindingPlugin, View, ViewProps } from '@tweakpane/core';
+import { BaseBladeParams, ViewProps } from '@tweakpane/core';
 
 export interface LatexBladeParams extends BaseBladeParams {
 	view: 'latex';

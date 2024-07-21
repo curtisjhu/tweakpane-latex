@@ -2,7 +2,7 @@
   "name": "tweakpane-latex",
   "version": "0.1.3",
   "description": "Tweakpane plugin for displaying Latex and Markdown",
-  "main": "dist/tweakpane-latex.js",
+  "main": "dist/tweakpane-latex.min.js",
   "types": "dist/types/index.d.ts",
   "author": "Curtis Hu",
   "license": "MIT",
