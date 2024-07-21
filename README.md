@@ -22,7 +22,7 @@ Or use the CDN files `https://unpkg.com/tweakpane-latex/dist/tweakpane-latex.js`
 </script>
 
 <!-- tweakpane 4x use tweakpane-latex@1.3 -->
-<script>
+<script type="module">
   import { Pane } from "tweakpane.min.js";
   import * as TweakpaneLatexPlugin from "tweakpane-latex.min.js";
 
